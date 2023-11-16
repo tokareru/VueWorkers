@@ -2,9 +2,9 @@
 <div>
     <h3>Список сотрудников</h3>
     <view-table
-            @workerChange="EditWorker"
             :workers="workers"
             :tableNamingTH="tableNamingTH"
+            @remove="RemoveWorker"
     />
     <add-to-table-form
             @createWorker="AddNewWorker"
@@ -54,9 +54,9 @@ export default {
         AddNewWorker(localWorker) {
             this.workers.push(localWorker);
         },
-        EditWorker(localWorkers) {
-            console.log(localWorkers);
-            this.workers = localWorkers;
+
+        RemoveWorker(id) {
+            this.workers = this.workers.filter(w => w.id !== id);
         }
     }
 }

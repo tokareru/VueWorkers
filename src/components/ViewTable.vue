@@ -12,7 +12,7 @@
             <td><custom-input class="viewInput" v-model.number="worker.exp"/></td>
             <td><custom-input class="viewInput" v-model.number="worker.old"/></td>
             <td><custom-input class="viewInput" v-model="worker.address"/></td>
-            <td><span @click="DeleteWorker" class="delete">❌</span></td>
+            <td><custom-button @click="DeleteWorker(worker.id)" class="delete">❌</custom-button></td>
         </tr>
     </table>
 </template>
@@ -32,14 +32,14 @@
         },
         methods: {
 
-            DeleteWorker() {
-                console.log(this)
+            DeleteWorker(id) {
+                this.$emit('remove', id)
             }
         },
-        emits: ['workerChange'],
-        data() {
-            return {
-                localWorkers: this.workers
+        emits: ['remove'],
+        computed: {
+            localWorkers() {
+                return this.workers;
             }
         }
     }
