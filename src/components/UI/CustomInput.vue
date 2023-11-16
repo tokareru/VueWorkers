@@ -15,7 +15,8 @@
             handleInputChange(event) {
                 this.$emit('update:modelValue', event.target.value);
             }
-        }
+        },
+        emits: ['update:modelValue']
     }
 </script>
 

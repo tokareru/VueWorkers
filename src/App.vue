@@ -1,6 +1,5 @@
 <template>
 <div>
-    <h3>Список сотрудников</h3>
     <view-table
             :workers="workers"
             :tableNamingTH="tableNamingTH"
