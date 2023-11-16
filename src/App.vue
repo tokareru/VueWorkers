@@ -10,7 +10,7 @@
             @createWorker="AddNewWorker"
             :tableNamingTH="tableNamingTH"
     />
-    <button @click="Open" class="ButtonNewWorker">Создать</button>
+    <custom-button @click="Open" class="open">Создать</custom-button>
 </div>
 </template>
 
@@ -68,8 +68,5 @@ body {
     margin:0;
 }
 
-.ButtonNewWorker {
-    float: right;
-    margin-top: 10px;
-}
+
 </style>

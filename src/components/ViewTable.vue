@@ -6,12 +6,12 @@
             </th>
         </tr>
 
-        <tr v-for="worker in localWorkers" v-bind:key="worker.id">
-            <td><input class="inputField" v-model="worker.firstName" @input="handleWorkerChange"></td>
-            <td><input class="inputField" v-model="worker.secondName" @input="handleWorkerChange"></td>
-            <td><input class="inputField" v-model.number="worker.exp" @input="handleWorkerChange"></td>
-            <td><input class="inputField" v-model.number="worker.old" @input="handleWorkerChange"></td>
-            <td><input class="inputField" v-model="worker.address" @input="handleWorkerChange"></td>
+        <tr v-for="(worker) in localWorkers" :key="worker.id">
+            <td><custom-input class="viewInput" v-model="worker.firstName"/></td>
+            <td><custom-input class="viewInput" v-model="worker.secondName"/></td>
+            <td><custom-input class="viewInput" v-model.number="worker.exp"/></td>
+            <td><custom-input class="viewInput" v-model.number="worker.old"/></td>
+            <td><custom-input class="viewInput" v-model="worker.address"/></td>
             <td><span @click="DeleteWorker" class="delete">❌</span></td>
         </tr>
     </table>
@@ -31,9 +31,7 @@
             }
         },
         methods: {
-            handleWorkerChange() {
-                this.$emit('workerChange', this.localWorkers);
-            },
+
             DeleteWorker() {
                 console.log(this)
             }
@@ -41,7 +39,7 @@
         emits: ['workerChange'],
         data() {
             return {
-                localWorkers: structuredClone(this.workers) //full copy of obj from props/model to local
+                localWorkers: this.workers
             }
         }
     }
@@ -56,13 +54,6 @@
 
     .workers tr {
         border: 2px solid black;
-    }
-
-    .inputField {
-        width:100%;
-        border:none;
-        text-align:center;
-        padding: 0;
     }
 
     .delete {
