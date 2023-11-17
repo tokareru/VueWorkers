@@ -9,7 +9,7 @@
             @createWorker="AddNewWorker"
             :tableNamingTH="tableNamingTH"
     />
-    <custom-button @click="Open" class="open">Создать</custom-button>
+    <!--<custom-button @click="Open" class="open">Создать</custom-button>-->
 </div>
 </template>
 
