@@ -8,7 +8,7 @@
         props: {
             modelValue: {
                 type: [String, Number],
-                required: true
+                required:true
             }
         },
         methods: {

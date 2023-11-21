@@ -8,12 +8,12 @@
                 </th>
             </tr>
 
-            <tr v-for="(worker) in localWorkers" :key="worker.id">
-                <td><custom-input class="viewInput" v-model="worker.firstName"/></td>
-                <td><custom-input class="viewInput" v-model="worker.secondName"/></td>
-                <td><custom-input class="viewInput" v-model.number="worker.exp"/></td>
-                <td><custom-input class="viewInput" v-model.number="worker.old"/></td>
-                <td><custom-input class="viewInput" v-model="worker.address"/></td>
+            <tr v-for="(worker, index) in workers" :key="worker.id">
+                <td><custom-input class="viewInput" :modelValue="worker.firstName" @input="changeWorkerData($event, index, Object.keys(worker)[1])"/></td>
+                <td><custom-input class="viewInput" :modelValue="worker.secondName" @input="changeWorkerData($event, index, Object.keys(worker)[2])"/></td>
+                <td><custom-input class="viewInput" :modelValue="worker.exp" @input="changeWorkerData($event, index, Object.keys(worker)[3])"/></td>
+                <td><custom-input class="viewInput" :modelValue="worker.old" @input="changeWorkerData($event, index, Object.keys(worker)[4])"/></td>
+                <td><custom-input class="viewInput" :modelValue="worker.address" @input="changeWorkerData($event, index, Object.keys(worker)[5])"/></td>
                 <td><custom-button @click="DeleteWorker(worker.id)" class="delete">❌</custom-button></td>
             </tr>
         </table>
@@ -35,17 +35,23 @@
             }
         },
         methods: {
-
+            changeWorkerData(event, index, key) {
+                this.$store.commit('changeWorkerData',
+                    {
+                        index: index,
+                        key: key,
+                        value: key == 'exp' || key == 'old'
+                            ?
+                            isNaN(parseInt(event.target.value)) ? null : parseInt(event.target.value)
+                            :
+                            event.target.value == '' ? null : event.target.value
+                    })
+            },
             DeleteWorker(id) {
                 this.$emit('remove', id)
             }
         },
-        emits: ['remove'],
-        computed: {
-            localWorkers() {
-                return this.workers;
-            }
-        }
+        emits: ['remove']
     }
 </script>
 
