@@ -9,7 +9,7 @@
             </tr>
 
             <tr v-for="(worker, index) in workers" :key="worker.id">
-                <td><custom-input class="viewInput" :modelValue="worker.firstName" @input="changeWorkerData($event, index, Object.keys(worker)[1])"/></td>
+                <td><custom-input class="viewInput" :modelValue="worker.firstName" @input="changeWorkerData($event, index, 'firstName')"/></td>
                 <td><custom-input class="viewInput" :modelValue="worker.secondName" @input="changeWorkerData($event, index, Object.keys(worker)[2])"/></td>
                 <td><custom-input class="viewInput" :modelValue="worker.exp" @input="changeWorkerData($event, index, Object.keys(worker)[3])"/></td>
                 <td><custom-input class="viewInput" :modelValue="worker.old" @input="changeWorkerData($event, index, Object.keys(worker)[4])"/></td>
@@ -48,7 +48,11 @@
                     })
             },
             DeleteWorker(id) {
-                this.$emit('remove', id)
+                this.$store.commit('deleteWorker',
+                    {
+                        id: id
+                    })
+                //this.$emit('remove', id)
             }
         },
         emits: ['remove']

@@ -5,8 +5,18 @@
 </template>
 
 <script>
-    export default {
+    import axios from "axios";
 
+    export default {
+        methods: {
+            async fetchWorkers() {
+                try {
+                    const response = await axios.get()
+                } catch(e) {
+                    alert('error')
+                }
+            }
+        }
     }
 </script>
 

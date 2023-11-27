@@ -7,7 +7,7 @@
         name: "CustomInput",
         props: {
             modelValue: {
-                type: [String, Number],
+                type: [String, Number, null],
                 required:true
             }
         },

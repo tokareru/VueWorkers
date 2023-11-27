@@ -3,9 +3,11 @@
         <view-table
                 :workers="$store.getters.getWorkers"
                 :tableNamingTH="$store.getters.gettableNamingTH"
-                @remove="RemoveWorker"
         />
+        <router-link :to="'/addWorker'" target="_blank">
         <custom-button @click="Open" class="open">Создать</custom-button>
+        </router-link>
+
     </div>
 </template>
 
@@ -24,11 +26,11 @@
         methods: {
             Open() {
 
-            },
-
-            RemoveWorker(id) {
-                this.workers = this.workers.filter(w => w.id !== id);
             }
+
+            /*RemoveWorker(id) {
+                this.workers = this.workers.filter(w => w.id !== id);
+            }*/
         }
     }
 </script>
