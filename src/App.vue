@@ -5,17 +5,12 @@
 </template>
 
 <script>
-    import axios from "axios";
 
     export default {
         methods: {
-            async fetchWorkers() {
-                try {
-                    const response = await axios.get()
-                } catch(e) {
-                    alert('error')
-                }
-            }
+        },
+        mounted() {
+            this.$store.dispatch("fetchFromJSON")
         }
     }
 </script>

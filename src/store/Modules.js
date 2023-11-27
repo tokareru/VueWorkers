@@ -1,18 +1,9 @@
+import axios from "axios";
 
 export const Modules = {
     state: () => ({
-        workers: [
-            {id:0, firstName:"Ivan",  secondName:"Ivanov", exp:1, old:20, address:"Istanbul"},
-            {id:1, firstName:"Petr",  secondName:"Petrov", exp:4, old:25, address:"Izmir"},
-            {id:2, firstName:"Vasya",  secondName:"Vasiliev", exp:9, old:30, address:"Alanya"}
-        ],
-        tableNamingTH: [
-            "Имя",
-            "Фамилия",
-            "Опыт",
-            "Возраст",
-            "Адрес"
-        ]
+        workers: [],
+        tableNamingTH: []
     }),
     getters: {
         gettableNamingTH(state) {
@@ -24,6 +15,14 @@ export const Modules = {
         }
     },
     mutations: {
+        setTableNamingTH(state, payload) {
+            const { data } = payload;
+            state.tableNamingTH = data;
+        },
+        setWorkers(state, payload) {
+            const { data } = payload;
+            state.workers = data;
+        },
         changeWorkerData(state, payload) {
             const { index, key, value } = payload;
             state.workers[index][key] = value;
@@ -34,6 +33,14 @@ export const Modules = {
         }
     },
     actions: {
-        
+        async fetchFromJSON({commit}) {
+            try {
+                const response = await axios.get("https://my-json-server.typicode.com/tokareru/VueWorkers/db");
+                commit("setWorkers", {data:response.data.workers});
+                commit("setTableNamingTH", {data:response.data.tableNamingTH});
+            } catch(e) {
+                console.log(e)
+            }
+        }
     }
 };
