@@ -15,7 +15,7 @@
         },
         methods: {
             AddNewWorker(localWorker) {
-                this.workers.push(localWorker);
+                this.$store.commit('AddNewWorker', localWorker)
             }
         }
     }

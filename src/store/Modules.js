@@ -27,6 +27,10 @@ export const Modules = {
             const { index, key, value } = payload;
             state.workers[index][key] = value;
         },
+        AddNewWorker(state, payload) {
+            //const { value } = payload;
+            state.workers.push(payload);
+        },
         deleteWorker(state, payload) {
             const { id } = payload;
             state.workers = state.workers.filter(w => w.id !== id);
@@ -35,12 +39,14 @@ export const Modules = {
     actions: {
         async fetchFromJSON({commit}) {
             try {
-                const response = await axios.get("https://my-json-server.typicode.com/tokareru/VueWorkers/db");
+                const response = await axios.get("https://my-json-server.typicode.com/tokareru/VueWorkers/db"); //"https://my-json-server.typicode.com/tokareru/VueWorkers/db"
                 commit("setWorkers", {data:response.data.workers});
                 commit("setTableNamingTH", {data:response.data.tableNamingTH});
             } catch(e) {
                 console.log(e)
             }
         }
+
+
     }
 };
