@@ -1,5 +1,7 @@
 # vuetest
 
+https://tokareru.github.io/VueWorkers/
+
 ## Project setup
 ```
 npm install
